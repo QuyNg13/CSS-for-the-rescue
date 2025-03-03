@@ -1,5 +1,5 @@
-body {
-    height: 100vh;
+main {
+    height: 96vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +35,7 @@ label[for="firstbutton"] div {
 
 label[for="firstbutton"] div::before {
     content: "";
-    position: fixed;
+    position: absolute;
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -68,4 +68,34 @@ input[type="checkbox"]:valid{
 input[type="checkbox"]:valid::before {
     box-shadow: 0px 0px 0px rgb(42, 42, 42);
     transform: translateY(2px);
+}
+
+label[for="slider"] div {
+    display: flex;
+    z-index: -1;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100%);
+    height: 4em;
+    width: 4em;
+    border-radius: 5%;
+    border: solid rgb(37, 37, 37);
+    border-width: 10px;
+    background: tan;
+    transition: width 2s ease-in-out, transform 2s ease-in-out;
+}
+
+input[type="range"]{
+    position: fixed;
+    width: 4em;
+    transition: width 2s ease-in-out, transform 2s ease-in-out;
+}
+
+form:has(input[type="checkbox"]:valid) label[for="slider"] div {
+    width: 10em;
+    transform: translateX(0);
+}
+
+form:has(input[type="checkbox"]:valid) input[type="range"] {
+    width: 10em;
 }
