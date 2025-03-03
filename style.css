@@ -44,6 +44,7 @@ label[for="firstbutton"] div::before {
 }
 
 input[type="checkbox"] {
+    cursor: pointer;
     appearance: none;
     display: flex;
     justify-content: center;
@@ -101,4 +102,5 @@ form:has(input[type="checkbox"]:valid) label[for="slider"] div {
 
 form:has(input[type="checkbox"]:valid) input[type="range"] {
     width: 10em;
+    cursor: pointer;
 }
