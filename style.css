@@ -1,0 +1,71 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+body form:nth-of-type(1){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin: 0;
+}
+
+label[for="firstbutton"] div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    width: 5em;
+    border-radius: 5%;
+    border: solid rgb(37, 37, 37);
+    border-width: 10px;
+    background: tan;
+}
+
+label[for="firstbutton"] div::before {
+    content: "";
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(66, 68, 66);
+    box-shadow: 30px 30px rgb(37, 38, 37), -30px 30px rgb(37, 38, 37), 30px -30px rgb(37, 38, 37),-30px -30px rgb(37, 38, 37);
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+    transition: margin-bottom 0.3s ease-in-out;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    background-color: rgb(66, 68, 66);
+    box-shadow: 0px 4px 0px rgb(42, 42, 42);
+    transition: 0.3s ease-in-out;
+}  
+
+input[type="checkbox"]:valid{
+    margin-bottom: 0;
+}
+
+input[type="checkbox"]:valid::before {
+    box-shadow: 0px 0px 0px rgb(42, 42, 42);
+    transform: translateY(2px);
+}
