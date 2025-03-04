@@ -1,7 +1,8 @@
 body{
     --standard-width:5em;
     --animation-duration:1.1s;
-    --interaction-color:rgb(59, 59, 59);
+    --interaction-color:rgb(86, 86, 86);
+    --module-color:tan;
 }
 
 main {
@@ -42,7 +43,7 @@ label[for="firstbutton"] div {
     border-radius: 5px;
     border: solid rgb(37, 37, 37);
     border-width: 10px;
-    background: tan;
+    background: var(--module-color);
 
     &::before {
         content: "";
@@ -95,7 +96,7 @@ label[for="slider"] div {
     border-radius: 5px;
     border: solid rgb(37, 37, 37);
     border-width: 10px;
-    background: tan;
+    background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 }
 
@@ -110,7 +111,7 @@ input[type="range"] {
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        background: rgb(180, 180, 180);
+        background: rgb(215, 215, 215);
         border: solid var(--interaction-color);
         border-width: 0px 8px;
         cursor: pointer;
@@ -128,7 +129,7 @@ input[type="range"] {
         width: 100%;
         height: 1em;
         cursor: pointer;
-        background: #0e0e0e;
+        background: #1d1d1d;
         border-radius: 2px;
         cursor: pointer;
     }
