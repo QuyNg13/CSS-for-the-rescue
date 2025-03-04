@@ -8,6 +8,7 @@ body{
 main {
     height: 96vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -18,7 +19,7 @@ fieldset {
     margin: 0;
 }
 
-body form:nth-of-type(1){
+body form{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,6 +35,19 @@ input {
     }
 }
 
+form:nth-of-type(1){
+    transform: translateX(25%);
+    transition: transform var(--animation-duration) ease-in-out;
+}
+
+form:nth-of-type(1):has(input[type="checkbox"]:valid){
+    transform: translateX(0);
+}
+
+/* ===============
+button
+=============== */
+
 label[for="firstbutton"] div {
     display: flex;
     justify-content: center;
@@ -41,8 +55,8 @@ label[for="firstbutton"] div {
     aspect-ratio: 1/1;
     width: var(--standard-width);
     border-radius: 5px;
-    border: solid rgb(37, 37, 37);
-    border-width: 10px;
+    /* border: solid rgb(37, 37, 37);
+    border-width: 10px; */
     background: var(--module-color);
 
     &::before {
@@ -84,7 +98,11 @@ input[type="checkbox"] {
     }
 }
 
-label[for="slider"] div {
+/* ===============
+slider
+=============== */
+
+fieldset:nth-of-type(2){
     display: flex;
     position: relative;
     z-index: -1;
@@ -92,16 +110,23 @@ label[for="slider"] div {
     align-items: center;
     transform: translateX(-100%);
     height: var(--standard-width);
-    width: 4em;
+    width: var(--standard-width);
     border-radius: 5px;
-    border: solid rgb(37, 37, 37);
-    border-width: 10px;
+    /* border: solid rgb(37, 37, 37);
+    border-width: 10px; */
     background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 }
 
+label[for="slider"] div {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
 /* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
-input[type="range"] {
+fieldset:nth-of-type(2) input[type="range"]{
     -webkit-appearance: none;
     position: fixed;
     background: transparent;
@@ -139,18 +164,61 @@ input[type="range"] {
     }
 }
 
-form:has(input[type="checkbox"]:invalid) label[for="slider"] div {
+form:nth-of-type(1):has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) {
     z-index: -1;
 }
 
-form:has(input[type="checkbox"]:valid) label[for="slider"] div {
+form:nth-of-type(1):has(input[type="checkbox"]:valid) fieldset:nth-of-type(2) {
     width: calc(var(--standard-width)*2);
     height: var(--standard-width);
     transform: translateX(0);
     animation: setZIndex 0s linear var(--animation-duration) forwards;
 }
 
-form:has(input[type="checkbox"]:valid) input[type="range"] {
+form:nth-of-type(1):has(input[type="checkbox"]:valid) input[type="range"]{
     width: 9em;
     cursor: pointer;
+}
+
+/* ===============
+dial
+=============== */
+
+form:nth-of-type(2) {
+    display: flex;
+    position: relative;
+    z-index: -2;
+    justify-content: center;
+    align-items: center;
+    height: var(--standard-width);
+    width: var(--standard-width);
+    transform: translateY(-100%);
+    border-radius: 5px;
+    /* border: solid rgb(37, 37, 37);
+    border-width: 10px; */
+    background: var(--module-color);
+    transition: width var(--animation-duration) ease-in-out, height var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
+    transition-delay: .1s;
+}
+
+label[for="dial"] div {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 1em;
+    width: 4em;
+}
+
+form:nth-of-type(2) input[type="range"]{
+    position: fixed;
+    width: 4em;
+    height: 1em;
+    transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
+}
+
+form:nth-of-type(1):has(input[type="range"][value=100]) ~ form:nth-of-type(2){
+    width: calc(var(--standard-width)*3);
+    height: calc(var(--standard-width)*3);
+    transform: translateY(0);
 }
