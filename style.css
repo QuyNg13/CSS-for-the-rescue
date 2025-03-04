@@ -190,15 +190,18 @@ form:nth-of-type(2) {
     z-index: -2;
     justify-content: center;
     align-items: center;
-    height: var(--standard-width);
-    width: var(--standard-width);
-    transform: translateY(-100%);
+    /* transform: translateY(calc(-100% * (1 - var(--slider))));
+    width: calc(var(--standard-width) * var(--slider));
+    height: calc(var(--standard-width) * var(--slider)); */
+    width: calc(var(--standard-width) * (1 + 2 * var(--slider)));
+    height: calc(var(--standard-width) * (1 + 2 * var(--slider)));
+    transform: translateY(calc(-100% + 100% * var(--slider)));
+    transform-origin: top;
     border-radius: 5px;
     /* border: solid rgb(37, 37, 37);
     border-width: 10px; */
     background: var(--module-color);
-    transition: width var(--animation-duration) ease-in-out, height var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
-    transition-delay: .1s;
+    /* transition: width var(--animation-duration) ease-in-out, height var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out; */
 }
 
 label[for="dial"] div {
@@ -215,10 +218,4 @@ form:nth-of-type(2) input[type="range"]{
     width: 4em;
     height: 1em;
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
-}
-
-form:nth-of-type(1):has(input[type="range"]) ~ form:nth-of-type(2){
-    width: calc(var(--standard-width)*3);
-    height: calc(var(--standard-width)*3);
-    transform: translateY(0);
 }
