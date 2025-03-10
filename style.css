@@ -3,6 +3,7 @@ body{
     --animation-duration:1.1s;
     --interaction-color:rgb(86, 86, 86);
     --module-color:tan;
+    --detail-color:rgb(37, 38, 37);
 }
 
 main {
@@ -65,7 +66,7 @@ label[for="firstbutton"] div {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        box-shadow: 30px 30px rgb(37, 38, 37), -30px 30px rgb(37, 38, 37), 30px -30px rgb(37, 38, 37),-30px -30px rgb(37, 38, 37);
+        box-shadow: 30px 30px var(--detail-color), -30px 30px var(--detail-color), 30px -30px var(--detail-color),-30px -30px var(--detail-color);
     }
 }
 
@@ -128,11 +129,25 @@ label[for="slider"] div {
 /* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
 fieldset:nth-of-type(2) input[type="range"]{
     -webkit-appearance: none;
-    position: fixed;
-    background: transparent;
-    width: 4em;
-    height: 1em;
+    /* position: fixed;
+    background: transparent; */
+    width: 3em;
+    height: 4em;
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
+
+    border: solid 1em currentcolor;
+  background: 
+    linear-gradient(90deg, var(--detail-color) 3px, transparent 0), 
+    linear-gradient(90deg, var(--detail-color) 3px, transparent 0);
+  background-clip:content-box;
+  background-position: 
+    5px 0px,5px 100%;
+  background-repeat: repeat-x;
+  background-size: 1em 1em;
+	background-color: currentcolor;
+	color: transparent;
+  font-size: 1em;
+  cursor: pointer;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -141,9 +156,10 @@ fieldset:nth-of-type(2) input[type="range"]{
         border-width: 0px 8px;
         cursor: pointer;
         border-radius: 4px;
-        height: 4em;
+        height: 3em;
         width: 20px;
-        margin-top: -1.5em;
+        transform: translateY(-1em);
+        box-shadow: rgba(0, 0, 0, 1) 0px 2px 5px;
     }
 
     &:focus {
@@ -154,13 +170,9 @@ fieldset:nth-of-type(2) input[type="range"]{
         width: 100%;
         height: 1em;
         cursor: pointer;
-        background: #1d1d1d;
+        background: #565656;
         border-radius: 2px;
         cursor: pointer;
-    }
-      
-    &:focus::-webkit-slider-thumb{
-        box-shadow: rgba(0, 0, 0, 1) 0px 2px 5px;
     }
 }
 
