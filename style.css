@@ -135,13 +135,12 @@ fieldset:nth-of-type(2) input[type="range"]{
     height: 4em;
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 
-    border: solid 1em currentcolor;
   background: 
     linear-gradient(90deg, var(--detail-color) 3px, transparent 0), 
     linear-gradient(90deg, var(--detail-color) 3px, transparent 0);
   background-clip:content-box;
   background-position: 
-    5px 0px,5px 100%;
+    7px 0px,7px 100%;
   background-repeat: repeat-x;
   background-size: 1em 1em;
 	background-color: currentcolor;
@@ -170,9 +169,10 @@ fieldset:nth-of-type(2) input[type="range"]{
         width: 100%;
         height: 1em;
         cursor: pointer;
-        background: #565656;
+        background: #121212;
         border-radius: 2px;
         cursor: pointer;
+        box-shadow: inset 0 .125em .25em #000000, inset 0 0 0 .25em var(--interaction-color);
     }
 }
 
@@ -199,21 +199,19 @@ dial
 form:nth-of-type(2) {
     display: flex;
     position: relative;
-    z-index: -2;
+    z-index: calc( -2 + (var(--slider) * 1.51) );
     justify-content: center;
     align-items: center;
     /* transform: translateY(calc(-100% * (1 - var(--slider))));
     width: calc(var(--standard-width) * var(--slider));
     height: calc(var(--standard-width) * var(--slider)); */
-    width: calc(var(--standard-width) * (1 + 2 * var(--slider)));
+    width: var(--standard-width);
     height: calc(var(--standard-width) * (1 + 2 * var(--slider)));
     transform: translateY(calc(-100% + 100% * var(--slider)));
     transform-origin: top;
     border-radius: 5px;
-    /* border: solid rgb(37, 37, 37);
-    border-width: 10px; */
     background: var(--module-color);
-    /* transition: width var(--animation-duration) ease-in-out, height var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out; */
+    transition: --slider var(--animation-duration) ease-in-out, width var(--animation-duration) ease-in-out;
 }
 
 label[for="dial"] div {
@@ -227,7 +225,16 @@ label[for="dial"] div {
 
 form:nth-of-type(2) input[type="range"]{
     position: fixed;
-    width: 4em;
+    width: calc(4em + (var(--slider) * 10em));
     height: 1em;
-    transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
+}
+
+form:nth-of-type(1):has(input[type="checkbox"]:valid) ~ form:nth-of-type(2){
+    width: calc(var(--standard-width)*3);
+}
+
+form:nth-of-type(1):has(input[type="checkbox"]:invalid) ~ form:nth-of-type(2){
+    transform: translateY -100%;
+    --slider:0;
+    z-index: -2;
 }
