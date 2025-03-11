@@ -42,6 +42,13 @@ input {
     initial-value: 0;
 }
 
+@property --dial {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+
 form:nth-of-type(1){
     transform: translateX(25%);
     transition: transform var(--animation-duration) ease-in-out;
@@ -100,7 +107,7 @@ form:nth-of-type(1) input[type="checkbox"] {
     }
 
     &:valid::before {
-        box-shadow: 0px 0px 0px rgb(42, 42, 42);
+        box-shadow: 0px 0px 0px rgb(42, 42, 42), inset 0 4px 0px rgb(42, 42, 42),inset 0 0 10px black;
         transform: translateY(2px);
     }
 }
@@ -230,7 +237,8 @@ label[for="dial"]{
 	width: calc(var(--slider)*12em);
 	height: calc(var(--slider)*12em);
 	background: var(--interaction-color);
-    box-shadow: 0px 8px 1px rgb(42, 42, 42);
+    border: solid 8px var(--detail-color);
+    box-shadow: 0px 8px 0px var(--interaction-color), 0px 15px 10px black;
 
     &::before{
     content:"";
@@ -245,7 +253,7 @@ label[for="dial"]{
 			circle at 
 				calc(50% + sin(var(--angle-thumb)) * (12em * calc(.4 * var(--slider)) - 1em * .5) ) 
 				calc(50% - cos(var(--angle-thumb)) * (12em * calc(.4 * var(--slider)) - 1em * .5) ),
-			var(--detail-color) calc(1em * .5),
+                rgb(215, 215, 215) calc(1em * .5),
 			transparent 0
 		);
     }
@@ -272,12 +280,6 @@ label[for="dial"]{
     }
 }
 
-/* form:nth-of-type(2) input[type="range"]{
-    position: fixed;
-    width: calc(4em + (var(--slider) * 10em));
-    height: 1em;
-} */
-
 form:nth-of-type(1):has(input[type="checkbox"]:valid) ~ form:nth-of-type(2){
     width: calc(var(--standard-width)*3);
 }
@@ -292,5 +294,20 @@ form:nth-of-type(1):has(input[type="checkbox"]:invalid) ~ form:nth-of-type(2){
 
 /* ===============
 switches
-=============== */
+=============== */ 
 
+form:nth-of-type(3) {
+    display: flex;
+    position: relative;
+    z-index: calc( -2 + (var(--dial) * 1.51) );
+    justify-content: center;
+    align-items: center;
+    width: calc(var(--standard-width) * 3);
+    height: var(--standard-width);
+    transform: translateY(calc(-100% + 100% * var(--dial)));
+    /* transform: translateY(calc(-100% + 100% * var(--dial) + -100% + 100% * var(--slider))); */
+    transform-origin: top;
+    border-radius: 5px;
+    background: var(--module-color);
+    transition: width var(--animation-duration) ease-in-out;
+}
