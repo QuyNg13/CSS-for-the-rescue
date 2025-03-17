@@ -40,7 +40,7 @@ input {
     }
 }
 
-@property --slider {
+@property --sliderValue {
     syntax: "<number>";
     inherits: true;
     initial-value: 0;
@@ -50,6 +50,11 @@ input {
     syntax: "<number>";
     inherits: true;
     initial-value: 0;
+}
+
+@keyframes --sliderAni {
+  0% {--sliderValue: attr(max type(<number>))}
+  100% {--sliderValue: attr(min type(<number>))}
 }
 /* ===============
 form
@@ -145,14 +150,6 @@ fieldset:nth-of-type(1):has(input[type="checkbox"]:checked) input[type="reset"]{
     margin-top: 4px;
 }
 
-/* form:nth-of-type(1):has(input[type="checkbox"]:valid) input[type="checkbox"]{
-    animation: Display linear 0.3s forwards;
-}
-
-form:nth-of-type(1):has(input[type="checkbox"]:valid) label:nth-of-type(2) input{
-    animation: setZIndex linear 0.3s forwards;
-} */
-
 /* ===============
 slider
 =============== */
@@ -164,13 +161,10 @@ fieldset:nth-of-type(2){
     z-index: -1;
     justify-content: center;
     align-items: center;
-    /* height: var(--standard-width);
-    width: var(--standard-width); */
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    /* border: solid rgb(37, 37, 37);
-    border-width: 10px; */
+    transform: translateX(-1.5em);
     background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 }
@@ -203,6 +197,12 @@ fieldset:nth-of-type(2) input[type="range"]{
   font-size: 1em;
   cursor: pointer;
 
+  timeline-scope: --slider;
+  animation: --sliderAni linear both;
+  animation-timeline: --slider;
+  animation-range: entry 100% exit 0%;
+  overflow: hidden;
+
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
         background: rgb(215, 215, 215);
@@ -215,6 +215,8 @@ fieldset:nth-of-type(2) input[type="range"]{
         transform: translateY(-1em);
         box-shadow: rgb(27, 27, 27) 2px 5px 5px;
         cursor: ew-resize;
+
+        view-timeline: --slider inline;
     }
 
     &:focus {
@@ -239,6 +241,7 @@ form:nth-of-type(1):has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) 
 form:has(input[type="checkbox"]:valid) fieldset:nth-of-type(2) {
     width: calc(var(--standard-width)*2);
     height: var(--standard-width);
+    transform: translateX(0);
     animation: setZIndex 0s linear var(--animation-duration) forwards;
 }
 
@@ -254,12 +257,12 @@ fieldset:nth-of-type(3) {
     grid-column: 1/3;
     grid-row: 2/3;
     display: flex;
-    z-index: calc( -2 + (var(--slider) * 1.51) );
+    z-index: calc( -2 + (var(--sliderValue) * 1.51) );
+    width: var(--standard-width);
+    height: calc(var(--standard-width) *(3 * var(--sliderValue)));
     justify-content: center;
     align-items: center;
-    width: var(--standard-width);
-    height: calc(var(--standard-width) *(3 * var(--slider)));
-    transform-origin: top;
+    transform: translateY(calc(-2em + (2em * var(--sliderValue))));
     border-radius: 5px;
     background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out;
@@ -288,8 +291,8 @@ label[for="dial"]{
 	background-image:
 		radial-gradient(
 			circle at 
-				calc(50% + sin(var(--angle-thumb)) * (12em * (.4 * var(--slider)) - 1em * .5) ) 
-				calc(50% - cos(var(--angle-thumb)) * (12em * (.4 * var(--slider)) - 1em * .5) ),
+				calc(50% + sin(var(--angle-thumb)) * (12em * (.4 * var(--sliderValue)) - 1em * .5) ) 
+				calc(50% - cos(var(--angle-thumb)) * (12em * (.4 * var(--sliderValue)) - 1em * .5) ),
                 rgb(215, 215, 215) calc(1em * .5),
 			transparent 0
 		);
