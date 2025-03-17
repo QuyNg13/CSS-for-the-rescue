@@ -20,12 +20,6 @@ fieldset {
     margin: 0;
 }
 
-body form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 input {
     margin: 0;
 }
@@ -47,25 +41,27 @@ input {
     inherits: true;
     initial-value: 0;
 }
+/* ===============
+form
+=============== */
+
+form{
+    display: grid;
+    grid-template-rows: var(--standard-width) 0fr;
+    grid-template-columns: var(--standard-width) 0fr;
+}
+
 
 /* ===============
 button
 =============== */
 
-form:nth-of-type(1) :not(:nth-of-type(3)){
-    transition: transform var(--animation-duration) ease-in-out;
-}
-
-form:nth-of-type(1) fieldset:nth-of-type(1):has(input[type="checkbox"]:valid){
-    transform: translateX(0);
-}
-
-label[for="firstbutton"] div {
+fieldset:nth-of-type(1) {
+    grid-column: 1/2;
+    grid-row: 1/2;
     display: flex;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1/1;
-    width: var(--standard-width);
     border-radius: 5px;
     /* border: solid rgb(37, 37, 37);
     border-width: 10px; */
@@ -81,8 +77,7 @@ label[for="firstbutton"] div {
     }
 }
 
-
-form:nth-of-type(1) fieldset:nth-of-type(1) input[type="checkbox"] {
+fieldset:nth-of-type(1) input[type="checkbox"] {
     cursor: pointer;
     appearance: none;
     display: flex;
@@ -114,15 +109,17 @@ form:nth-of-type(1) fieldset:nth-of-type(1) input[type="checkbox"] {
 slider
 =============== */
 
-form:nth-of-type(1) fieldset:nth-of-type(2){
+fieldset:nth-of-type(2){
+    grid-column: 2/3;
+    grid-row: 1/2;
     display: flex;
-    position: relative;
     z-index: -1;
     justify-content: center;
     align-items: center;
-    transform: translateX(-100%);
-    height: var(--standard-width);
-    width: var(--standard-width);
+    /* height: var(--standard-width);
+    width: var(--standard-width); */
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     /* border: solid rgb(37, 37, 37);
     border-width: 10px; */
@@ -130,23 +127,19 @@ form:nth-of-type(1) fieldset:nth-of-type(2){
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 }
 
-label[for="slider"] div {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
+fieldset:nth-of-type(2) label{
+    height: 80%;
+    width: 90%;
 }
 
 /* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+/* https://codepen.io/wqsuasrc-the-looper/pen/emYELqz?editors=0100 inspiratie genomen van Ana tudor slider*/ 
 fieldset:nth-of-type(2) input[type="range"]{
     -webkit-appearance: none;
-    /* position: fixed;
-    background: transparent; */
-    width: 3em;
-    height: 4em;
+    width: 100%;
+    height: 100%;
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 
-/* https://codepen.io/wqsuasrc-the-looper/pen/emYELqz?editors=0100 inspiratie genomen van Ana tudor slider*/ 
   background: 
   linear-gradient(90deg, var(--detail-color) 1.5px, transparent 0),
   linear-gradient(90deg, var(--detail-color) 1.5px, transparent 0),
@@ -195,15 +188,13 @@ form:nth-of-type(1):has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) 
     z-index: -1;
 }
 
-form:nth-of-type(1):has(input[type="checkbox"]:valid) fieldset:nth-of-type(2) {
+form:has(input[type="checkbox"]:valid) fieldset:nth-of-type(2) {
     width: calc(var(--standard-width)*2);
     height: var(--standard-width);
-    transform: translateX(0);
     animation: setZIndex 0s linear var(--animation-duration) forwards;
 }
 
 form:nth-of-type(1):has(input[type="checkbox"]:valid) input[type="range"]{
-    width: 9em;
     cursor: pointer;
 }
 
@@ -212,15 +203,14 @@ dial
 =============== */
 
 fieldset:nth-of-type(3) {
+    grid-column: 1/3;
+    grid-row: 2/3;
     display: flex;
-    position: relative;
     z-index: calc( -2 + (var(--slider) * 1.51) );
     justify-content: center;
     align-items: center;
     width: var(--standard-width);
-    height: calc(var(--standard-width) *(1 + 2 * var(--slider)));
-    transform: translatex(-100%);
-    transform: translatey(calc(66% * var(--slider)));
+    height: calc(var(--standard-width) *(3 * var(--slider)));
     transform-origin: top;
     border-radius: 5px;
     background: var(--module-color);
@@ -233,8 +223,8 @@ label[for="dial"]{
     justify-content: center;
     align-items: center;
     border-radius:50%;
-	width: calc(var(--slider)*12em);
-	height: calc(var(--slider)*12em);
+	width: 70%;
+	height: 70%;
 	background: var(--interaction-color);
     border: solid 8px var(--detail-color);
     box-shadow: 0px 8px 0px var(--interaction-color), 0px 15px 10px black;
