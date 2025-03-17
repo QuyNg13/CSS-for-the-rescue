@@ -48,19 +48,17 @@ input {
     initial-value: 0;
 }
 
-
-form:nth-of-type(1){
-    transform: translateX(25%);
-    transition: transform var(--animation-duration) ease-in-out;
-}
-
-form:nth-of-type(1):has(input[type="checkbox"]:valid){
-    transform: translateX(0);
-}
-
 /* ===============
 button
 =============== */
+
+form:nth-of-type(1) :not(:nth-of-type(3)){
+    transition: transform var(--animation-duration) ease-in-out;
+}
+
+form:nth-of-type(1) fieldset:nth-of-type(1):has(input[type="checkbox"]:valid){
+    transform: translateX(0);
+}
 
 label[for="firstbutton"] div {
     display: flex;
@@ -84,7 +82,7 @@ label[for="firstbutton"] div {
 }
 
 
-form:nth-of-type(1) input[type="checkbox"] {
+form:nth-of-type(1) fieldset:nth-of-type(1) input[type="checkbox"] {
     cursor: pointer;
     appearance: none;
     display: flex;
@@ -156,9 +154,9 @@ fieldset:nth-of-type(2) input[type="range"]{
     linear-gradient(90deg, var(--interaction-color) 3px, transparent 0) ;
   background-clip:content-box;
   background-position: 
-  6px 100%,6px 0px,7px 0px,7px 100%;
+  6px 100%,6px 0px, 7px 0px,7px 100%;
   background-repeat: repeat-x;
-  background-size: 1em 1em;
+  background-size: calc(9em/10) 1em;
 	background-color: currentcolor;
 	color: transparent;
   font-size: 1em;
@@ -213,15 +211,16 @@ form:nth-of-type(1):has(input[type="checkbox"]:valid) input[type="range"]{
 dial
 =============== */
 
-form:nth-of-type(2) {
+fieldset:nth-of-type(3) {
     display: flex;
     position: relative;
     z-index: calc( -2 + (var(--slider) * 1.51) );
     justify-content: center;
     align-items: center;
     width: var(--standard-width);
-    height: calc(var(--standard-width) * (1 + 2 * var(--slider)));
-    transform: translateY(calc(-100% + 100% * var(--slider)));
+    height: calc(var(--standard-width) *(1 + 2 * var(--slider)));
+    transform: translatex(-100%);
+    transform: translatey(calc(66% * var(--slider)));
     transform-origin: top;
     border-radius: 5px;
     background: var(--module-color);
@@ -251,8 +250,8 @@ label[for="dial"]{
 	background-image:
 		radial-gradient(
 			circle at 
-				calc(50% + sin(var(--angle-thumb)) * (12em * calc(.4 * var(--slider)) - 1em * .5) ) 
-				calc(50% - cos(var(--angle-thumb)) * (12em * calc(.4 * var(--slider)) - 1em * .5) ),
+				calc(50% + sin(var(--angle-thumb)) * (12em * (.4 * var(--slider)) - 1em * .5) ) 
+				calc(50% - cos(var(--angle-thumb)) * (12em * (.4 * var(--slider)) - 1em * .5) ),
                 rgb(215, 215, 215) calc(1em * .5),
 			transparent 0
 		);
@@ -280,34 +279,13 @@ label[for="dial"]{
     }
 }
 
-form:nth-of-type(1):has(input[type="checkbox"]:valid) ~ form:nth-of-type(2){
+fieldset:nth-of-type(1):has(input[type="checkbox"]:valid) ~ fieldset:nth-of-type(3){
     width: calc(var(--standard-width)*3);
 }
 
-form:nth-of-type(1):has(input[type="checkbox"]:invalid) ~ form:nth-of-type(2){
-    transform: translateY -100%;
+fieldset:nth-of-type(1):has(input[type="checkbox"]:invalid) ~ fieldset:nth-of-type(3){
     transition: --slider var(--animation-duration) ease-in-out, width var(--animation-duration) ease-in-out;;
     --slider: 0;
     z-index: -2;
-}
-
-
-/* ===============
-switches
-=============== */ 
-
-form:nth-of-type(3) {
-    display: flex;
-    position: relative;
-    z-index: calc( -2 + (var(--dial) * 1.51) );
-    justify-content: center;
-    align-items: center;
-    width: calc(var(--standard-width) * 3);
-    height: var(--standard-width);
-    transform: translateY(calc(-100% + 100% * var(--dial)));
-    /* transform: translateY(calc(-100% + 100% * var(--dial) + -100% + 100% * var(--slider))); */
-    transform-origin: top;
-    border-radius: 5px;
-    background: var(--module-color);
-    transition: width var(--animation-duration) ease-in-out;
+    width: var(--standard-width);
 }
