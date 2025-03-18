@@ -284,7 +284,7 @@ label[for="dial"]{
      }
   ```
 </details>
-
+<details>
 <summary><h4>draaiknop animatie code</h4></summary>
   
   ```
@@ -298,7 +298,7 @@ label[for="dial"]{
 **Switches:**
 
 Deze week wou ik nog een begin maken aan een interactie die onder de draaiknop vandaan komt. Het idee was hier om een aantal toggle switches te maken die iets doen als je ze allemaal hebt geactiveerd. Deze form komt tevoorschijn op basis van de waarde van de draaiknop.
-
+<details>
 <summary><h4>switches code</h4></summary>
   
   ```
@@ -320,10 +320,154 @@ form:nth-of-type(3) {
   ```
 </details>
 
+### Volgedne week
+Ik kwam er deze week achter dat als je alles probeert te resetten door weer op de eerste knop te drukken, de waarde van de slider niet terug gaat. Tijdens het feedback gesprek kreeg ik te horen dat dat wel kan als ik de checkbox vervang met een reset knop als de checkbox actief is. Hiervoor moet ik alle interacties in één form doen in plaats van voor elke interactie een aparte form maken. Ik wil ook nog iets doen met typografie. 
 
-
+Verder zou ik me willen verdiepen hoe ik de interacties anders kan positioneren dan transform: translate, ik zit er over na te denken om een grid te gebruiken waarbij elke interactie zijn eigen hoekje geef en de hoogte en breedte in eerste instantie op 0fr te zetten. op deze manier hoef ik alleen de hoogte en breedte van de interacties aan te passen in plaats van het precentage van de translate.
 </details>
 <details>
 <summary><h2>Week 4</h2></summary>
+
+### Doel
+
+Deze week ga ik het project afmaken. Mijn belangrijkste doel is om het voor elkaar te krijgen dat de reset knop werkt. Ik denkt dat het gaat lukken om iets met typografie te doen en grid te gebruiken in plaats van translate.
+
+### Voortgang
+
+**Reset knop:**
+Om een reset knop te implementeren is het nodig om alle interacties in één form te doen. Als de checkbox van de eerste knop actief is moet de checkbox verdwijnen en de reset knop naar voren komen met dezelfde styling.
+<details>
+<summary><h4>html opbouw</h4></summary>
   
+  ```
+<body>
+    <main>
+        <h1>click me</h1>
+        <form>
+            <fieldset>
+                <label for="firstbutton">
+                    <input type="checkbox" name="firstbutton" required>
+                </label>
+                <label>
+                    <input type="reset">
+                </label>
+            </fieldset>
+            <fieldset>
+                <label for="slider">
+                    <input type="range" min="0" max="1" step="0.01" value="0">
+                </label>
+            </fieldset>
+            <fieldset>
+                <label for="dial">
+                    <input type="range" min="0.01" max="1" step="any" value="0" name="dial">
+                </label>
+            </fieldset>
+        </form>
+    </main>
+</body>
+  ```
+</details>
+
+<details>
+<summary><h4>reset knop code</h4></summary>
+  
+  ```
+fieldset:nth-of-type(1) input[type="reset"] {
+     color: rgb(215, 215, 215);
+     padding: 0;
+     border: none;
+     position: absolute;
+     visibility: hidden;
+     width: 4em;
+     height: 4em;
+     border-radius: 50%;
+     background-color: var(--interaction-color);
+     box-shadow: 0px 0px 0px rgb(42, 42, 42), inset 0 4px 0px rgb(42, 42, 42),inset 0 0 10px black;
+     transition: 0.3s ease-in-out;
+ }
+ 
+ @keyframes resetbutton {
+     1%, 99%{
+         visibility: hidden;
+     }
+ 
+     100% {
+         visibility: visible;
+     }
+ }
+ 
+ fieldset:nth-of-type(1):has(input[type="checkbox"]:checked) input[type="reset"]{
+     animation: resetbutton 0.3s linear forwards;
+     margin-top: 4px;
+ }
+  ```
+</details>
+
+**slider reset:**
+Met de resset knop wordt de positie van de slider weer naar het begin gezet maar de waarde van de custom property dat gekoppeld is aan de slider wordt niet op 0 gezet. Sanne heeft me een [codepen](https://codepen.io/shooft/pen/emYzEra) gestuurd waar er een waarde uit de slider wordt gehaald zonder JS. 
+
+Deze code zorgt ervoor dat de slider (input[type="range"]) automatisch animatie afspeelt op basis van hoe ver je de thumb schuift. De variabele --rangePercentageValue wordt geüpdatet van max naar min wanneer de slider beweegt en de view-timeline (--rangePercentage) koppelt de voortgang van de thumb aan een animatie. Hierdoor kan ik --rangePercentageValue gebruiken om de volgende interactie te animeren. Deze waarde wordt ook gereset met de reset knop omdat de positie van de thumb naar 0 gaat en --rangePercentageValue dus ook.
+<details>
+<summary><h4>nieuwe slider code</h4></summary>
+  
+  ```
+    timeline-scope: --rangePercentage;
+     animation: --rangePercentageAni linear both;
+     animation-timeline: --rangePercentage;
+     animation-range: entry 100% exit 0%;
+
+@property --rangePercentageValue {
+     syntax: "<number>";
+     inherits: true;
+     initial-value: 0; 
+   }
+
+@keyframes --rangePercentageAni {
+     0% {--rangePercentageValue: 1}
+     100% {--rangePercentageValue: 0}
+   }
+ }
+
+fieldset:nth-of-type(2) input[type="range"]{
+  overflow: hidden;
+  view-timeline: --rangePercentage inline;
+}
+  ```
+</details> 
+
+**font control:**
+Nadat ik de reset knop werkend kreeg kwam ik er achter dat het niet meer mogelijk is om nog een interactie toe te voegen. Ik had wel iets nodig dat je kan bedienen met de draaiknop. uiteindelijk heb ik ervoor gekozen om een titel te maken waarvan de font-weight aangepast wordt door de draaiknop.
+<details>
+<summary><h4>font control code</h4></summary>
+  
+  ```
+h1{
+     font-family: "Inconsolata", monospace;
+     font-weight: calc(900*var(--dial));
+ }
+  ```
+</details> 
+
+**draaiknop container:**
+momenteel kan je de draaiknop nog zien wanneer de fieldset op een hoogte van 0fr zit. Ik heb dit opgelost met een container query. wanneer de container kleiner wordt dan dat de draaiknop hoog is zal hij langzaam verdwijnen door de oppacity te controleren met de waarde van de slider en display op none te setten als de container klein genoeg is.
+<details>
+<summary><h4>draaiknop container code</h4></summary>
+  
+  ```
+fieldset:nth-of-type(3) {
+    container-type: size;
+    container-name: dial;
+
+    label[for="dial"]{
+        opacity: calc(200% * var(--rangePercentageValue));
+  }
+}
+
+@container dial (max-height: 2em){
+     fieldset:nth-of-type(3) label[for="dial"] {
+         display: none;
+     }
+ }
+  ```
+</details> 
 </details>
