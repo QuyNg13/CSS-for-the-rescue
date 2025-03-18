@@ -43,16 +43,6 @@ input {
     }
 }
 
-@keyframes resetbutton {
-    1%, 99%{
-        visibility: hidden;
-    }
-    
-    100% {
-        visibility: visible;
-    }
-}
-
 @property --dial {
     syntax: "<number>";
     inherits: true;
@@ -131,7 +121,6 @@ fieldset:nth-of-type(1) input[type="checkbox"] {
 
     &:valid{
         margin-bottom: 0;
-        display: none;
     }
 
     &:valid::before {
@@ -152,6 +141,16 @@ fieldset:nth-of-type(1) input[type="reset"] {
     background-color: var(--interaction-color);
     box-shadow: 0px 0px 0px rgb(42, 42, 42), inset 0 4px 0px rgb(42, 42, 42),inset 0 0 10px black;
     transition: 0.3s ease-in-out;
+}
+
+@keyframes resetbutton {
+    1%, 99%{
+        visibility: hidden;
+    }
+    
+    100% {
+        visibility: visible;
+    }
 }
 
 fieldset:nth-of-type(1):has(input[type="checkbox"]:checked) input[type="reset"]{
@@ -192,8 +191,8 @@ fieldset:nth-of-type(2) input[type="range"]{
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 
   background: 
-  linear-gradient(90deg, var(--detail-color) 1.5px, transparent 0),
-  linear-gradient(90deg, var(--detail-color) 1.5px, transparent 0),
+  linear-gradient(90deg, var(--detail-color) 1.5px, transparent 3px),
+  linear-gradient(90deg, var(--detail-color) 1.5px, transparent 3px),
     linear-gradient(90deg, var(--interaction-color) 3px, transparent 0), 
     linear-gradient(90deg, var(--interaction-color) 3px, transparent 0) ;
   background-clip:content-box;
@@ -217,7 +216,7 @@ fieldset:nth-of-type(2) input[type="range"]{
     height: 3em;
     width: 20px;
     transform: translateY(-1em);
-    box-shadow: rgb(27, 27, 27) 2px 5px 5px;
+    box-shadow: rgb(27, 27, 27) 0px 3px 2px;
     cursor: ew-resize;
 
     view-timeline: --rangePercentage inline;
@@ -345,3 +344,4 @@ fieldset:nth-of-type(1):has(input[type="checkbox"]:valid) ~ fieldset:nth-of-type
         transform: translateY(-2em);
     }
 }
+
