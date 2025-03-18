@@ -1,12 +1,10 @@
-html{
+body{
     /* https://codepen.io/wqsuasrc-the-looper/pen/yyLvVgw */
     timeline-scope: --rangePercentage;
     animation: --rangePercentageAni linear both;
     animation-timeline: --rangePercentage;
     animation-range: entry 100% exit 0%;
-}
 
-body{
     --standard-width:6em;
     --animation-duration:1.1s;
     --interaction-color:rgb(86, 86, 86);
@@ -129,6 +127,10 @@ fieldset:nth-of-type(1) input[type="checkbox"] {
     }
 }
 
+/* ===============
+reset button
+=============== */
+
 fieldset:nth-of-type(1) input[type="reset"] {
     color: rgb(215, 215, 215);
     padding: 0;
@@ -236,7 +238,10 @@ fieldset:nth-of-type(2) input[type="range"]{
     }
 }
 
-form:nth-of-type(1):has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) {
+/* slider animations
+==================== */
+
+form:has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) {
     z-index: -1;
 }
 
@@ -246,7 +251,7 @@ form:has(input[type="checkbox"]:valid) fieldset:nth-of-type(2) {
     animation: setZIndex 0s linear var(--animation-duration) forwards;
 }
 
-form:nth-of-type(1):has(input[type="checkbox"]:valid) input[type="range"]{
+form:has(input[type="checkbox"]:valid) input[type="range"]{
     cursor: pointer;
 }
 
@@ -320,6 +325,9 @@ fieldset:nth-of-type(3) {
         }
     }
 }
+
+/* dial animations
+==================== */
 
 @container dial (max-height: 2em){
     fieldset:nth-of-type(3) label[for="dial"] {
