@@ -30,3 +30,7 @@ Ik heb de animatie gemaakt door middel van has:(). hierbij beweek ik de knop naa
 Ook heb ik deze week tijd gestopt in uitzoeken hoe je een range input kan stylen dat ook is gelukt. Ik heb de javascript die ik mag gebruiken voor het ophalen van de waarde van de range inputs in het project geplakt. 
 
 ik ga volgende week uitzoek hoe ik deze kan gebruiken om een grote draaiknop tevoorschijn te laten komen. Ik moet nog wel bedenken van is er als "grapje" in ga doen als je alle interacties af bent gegaan.
+
+## Week3
+
+## Week4

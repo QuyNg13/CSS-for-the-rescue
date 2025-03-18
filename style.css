@@ -139,6 +139,7 @@ fieldset:nth-of-type(1) input[type="reset"] {
     height: 4em;
     border-radius: 50%;
     background-color: var(--interaction-color);
+    cursor: pointer;
     box-shadow: 0px 0px 0px rgb(42, 42, 42), inset 0 4px 0px rgb(42, 42, 42),inset 0 0 10px black;
     transition: 0.3s ease-in-out;
 }
@@ -172,7 +173,6 @@ fieldset:nth-of-type(2){
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    /* transform: translateX(-1.5em); */
     background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 }
@@ -229,10 +229,9 @@ fieldset:nth-of-type(2) input[type="range"]{
     &::-webkit-slider-runnable-track {
         width: 100%;
         height: 1em;
-        cursor: pointer;
+        cursor: default;
         background: #121212;
         border-radius: 2px;
-        cursor: pointer;
         box-shadow: inset 0 .125em .25em #000000, inset 0 0 0 .25em var(--interaction-color);
     }
 }
@@ -244,7 +243,6 @@ form:nth-of-type(1):has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) 
 form:has(input[type="checkbox"]:valid) fieldset:nth-of-type(2) {
     width: calc(var(--standard-width)*2);
     height: var(--standard-width);
-    /* transform: translateX(0); */
     animation: setZIndex 0s linear var(--animation-duration) forwards;
 }
 
@@ -266,7 +264,6 @@ fieldset:nth-of-type(3) {
     height: 0;
     justify-content: center;
     align-items: center;
-    /* transform: translateY(-2em); */
     border-radius: 5px;
     background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out;
@@ -334,7 +331,6 @@ fieldset:nth-of-type(3) {
     to{
         height: calc(var(--standard-width) * 3 * var(--rangePercentageValue));
         z-index: calc( -2 + (var(--rangePercentageValue) * 1.51) );
-        /* transform: translateY(calc(-2em + (2em * var(--rangePercentageValue)))); */
     }
 }
 
