@@ -1,20 +1,20 @@
 
 
-// const ranges = document.querySelectorAll('[type="range"]');
+const ranges = document.querySelectorAll('[type="range"]');
 
-// const updateRange = range => {
+const updateRange = range => {
 
-// 	const rangeName = range.name;
+	const rangeName = range.name;
 
-// 	const rangeValue = range.value;
+	const rangeValue = range.value;
 
-// 	document.documentElement.style.setProperty("--"+rangeName, rangeValue);
-// }
+	document.documentElement.style.setProperty("--"+rangeName, rangeValue);
+}
 
-// ranges.forEach(range => {
-// 	updateRange(range);
+ranges.forEach(range => {
+	updateRange(range);
 	
-// 	range.oninput = () => {
-// 		updateRange(range)
-// 	};
-// });
+	range.oninput = () => {
+		updateRange(range)
+	};
+});

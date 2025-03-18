@@ -14,6 +14,11 @@ main {
     align-items: center;
 }
 
+h1{
+    font-family: "Inconsolata", monospace;
+    font-weight: calc(900*var(--dial));
+}
+
 fieldset {
     border: 0;
     padding: 0;
@@ -40,22 +45,23 @@ input {
     }
 }
 
-@property --sliderValue {
-    syntax: "<number>";
-    inherits: true;
-    initial-value: 0;
-}
-
 @property --dial {
     syntax: "<number>";
     inherits: true;
     initial-value: 0;
 }
 
-@keyframes --sliderAni {
-  0% {--sliderValue: attr(max type(<number>))}
-  100% {--sliderValue: attr(min type(<number>))}
-}
+@property --rangePercentageValue {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0; 
+  }
+  
+/* @keyframes --rangePercentageAni {
+    0% {--rangePercentageValue: attr(max type(<number>))}
+    100% {--rangePercentageValue: attr(min type(<number>))}
+  } */
+
 /* ===============
 form
 =============== */
@@ -197,27 +203,28 @@ fieldset:nth-of-type(2) input[type="range"]{
   font-size: 1em;
   cursor: pointer;
 
-  timeline-scope: --slider;
-  animation: --sliderAni linear both;
-  animation-timeline: --slider;
+  /* timeline-scope: --rangePercentage;
+  animation: --rangePercentageAni linear both;
+  animation-timeline: --rangePercentage;
   animation-range: entry 100% exit 0%;
-  overflow: hidden;
+  accent-color:hsl( calc(360 * var(--rangePercentageValue))  100% 50%);
+  overflow: hidden; */
 
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        background: rgb(215, 215, 215);
-        border: solid var(--interaction-color);
-        border-width: 0px 8px;  
-        cursor: pointer;
-        border-radius: 4px;
-        height: 3em;
-        width: 20px;
-        transform: translateY(-1em);
-        box-shadow: rgb(27, 27, 27) 2px 5px 5px;
-        cursor: ew-resize;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: rgb(215, 215, 215);
+    border: solid var(--interaction-color);
+    border-width: 0px 8px;  
+    cursor: pointer;
+    border-radius: 4px;
+    height: 3em;
+    width: 20px;
+    transform: translateY(-1em);
+    box-shadow: rgb(27, 27, 27) 2px 5px 5px;
+    cursor: ew-resize;
 
-        view-timeline: --slider inline;
-    }
+    /* view-timeline: --rangePercentage inline; */
+}
 
     &:focus {
         outline: none;
@@ -257,12 +264,12 @@ fieldset:nth-of-type(3) {
     grid-column: 1/3;
     grid-row: 2/3;
     display: flex;
-    z-index: calc( -2 + (var(--sliderValue) * 1.51) );
+    z-index: calc( -2 + (var(--rangePercentageValue) * 1.51) );
     width: var(--standard-width);
-    height: calc(var(--standard-width) *(3 * var(--sliderValue)));
+    height: calc(var(--standard-width) *(3 * var(--rangePercentageValue)));
     justify-content: center;
     align-items: center;
-    transform: translateY(calc(-2em + (2em * var(--sliderValue))));
+    transform: translateY(calc(-2em + (2em * var(--rangePercentageValue))));
     border-radius: 5px;
     background: var(--module-color);
     transition: width var(--animation-duration) ease-in-out;
@@ -291,8 +298,8 @@ label[for="dial"]{
 	background-image:
 		radial-gradient(
 			circle at 
-				calc(50% + sin(var(--angle-thumb)) * (12em * (.4 * var(--sliderValue)) - 1em * .5) ) 
-				calc(50% - cos(var(--angle-thumb)) * (12em * (.4 * var(--sliderValue)) - 1em * .5) ),
+				calc(50% + sin(var(--angle-thumb)) * (12em * (.4 * var(--rangePercentageValue)) - 1em * .5) ) 
+				calc(50% - cos(var(--angle-thumb)) * (12em * (.4 * var(--rangePercentageValue)) - 1em * .5) ),
                 rgb(215, 215, 215) calc(1em * .5),
 			transparent 0
 		);
@@ -325,8 +332,10 @@ fieldset:nth-of-type(1):has(input[type="checkbox"]:valid) ~ fieldset:nth-of-type
 }
 
 fieldset:nth-of-type(1):has(input[type="checkbox"]:invalid) ~ fieldset:nth-of-type(3){
-    transition: --slider var(--animation-duration) ease-in-out, width var(--animation-duration) ease-in-out;;
+    transition: --rangePercentageValue var(--animation-duration) ease-in-out, width 1s ease-in-out, height var(--animation-duration) ease-in-out;
     --slider: 0;
     z-index: -2;
     width: var(--standard-width);
+    height: 0;
+    transform: translateY(-2em);
 }
