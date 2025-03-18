@@ -413,7 +413,7 @@ fieldset:nth-of-type(1) input[type="reset"] {
 </details>
 
 <h4>slider reset:</h4>
-Met de resset knop wordt de positie van de slider weer naar het begin gezet maar de waarde van de custom property dat gekoppeld is aan de slider wordt niet op 0 gezet. Sanne heeft me een [codepen](https://codepen.io/shooft/pen/emYzEra) gestuurd waar er een waarde uit de slider wordt gehaald zonder JS. 
+Met de resset knop wordt de positie van de slider weer naar het begin gezet maar de waarde van de custom property dat gekoppeld is aan de slider wordt niet op 0 gezet. Sanne heeft me een codepen gestuurd waar er een waarde uit de slider wordt gehaald zonder JS. 
 <br>
 <br>
 Deze code zorgt ervoor dat de slider `(input[type="range"])` automatisch animatie afspeelt op basis van hoe ver je de thumb schuift. De variabele `--rangePercentageValue` wordt geüpdatet van max naar min wanneer de slider beweegt en de view-timeline `(--rangePercentage)` koppelt de voortgang van de thumb aan een animatie. Hierdoor kan ik --rangePercentageValue gebruiken om de volgende interactie te animeren. Deze waarde wordt ook gereset met de reset knop omdat de positie van de thumb naar 0 gaat en `--rangePercentageValue` dus ook.
@@ -487,8 +487,8 @@ fieldset:nth-of-type(3) {
 </details>
 <details>
 <summary><h2>Bronnen</h2></summary>
--[range input styling] (https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/)
--[Ana Tudor's slider] (https://codepen.io/wqsuasrc-the-looper/pen/emYELqz?editors=0100)
--[sin/cos workshop] (https://codepen.io/shooft/pen/OPJxyQW)
--[codepen] (https://codepen.io/shooft/pen/emYzEra)
+-[range input styling](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/)<br>
+-[Ana Tudor's slider](https://codepen.io/wqsuasrc-the-looper/pen/emYELqz?editors=0100)<br>
+-[sin/cos workshop](https://codepen.io/shooft/pen/OPJxyQW)<br>
+-[codepen](https://codepen.io/shooft/pen/emYzEra)
 </details>
