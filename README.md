@@ -490,5 +490,5 @@ fieldset:nth-of-type(3) {
 -[range input styling](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/)<br>
 -[Ana Tudor's slider](https://codepen.io/wqsuasrc-the-looper/pen/emYELqz?editors=0100)<br>
 -[sin/cos workshop](https://codepen.io/shooft/pen/OPJxyQW)<br>
--[codepen](https://codepen.io/shooft/pen/emYzEra)
+-[codepen slider zonder JS](https://codepen.io/shooft/pen/emYzEra)
 </details>
