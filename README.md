@@ -58,6 +58,7 @@ fieldset {
 
 Ik heb de eerste knop gemaakt met een checkbox waarbij ik de styling weg heb gehaald. De styling voor de knop heb ik op een :before element gezet. De animatie van de knop heb ik gemaakt door de margin en :before te stylen bij valid. De "schroefjes" die ik heb toegevoegd als detail voor de knop heb ik gedaan door middel van box-shaddows op de parent.
 
+<img src="images/knop.png">
   <details>
   <summary><h4>knop code</h4></summary>
 
@@ -111,6 +112,8 @@ Ik heb de eerste knop gemaakt met een checkbox waarbij ik de styling weg heb geh
 **slider:**
 
 Ook heb ik deze week tijd gestopt in uitzoeken hoe je een range input kan stylen dat ook is gelukt. Ik heb de javascript die ik mag gebruiken voor het ophalen van de waarde van de range inputs in het project geplakt. Om de animatie te maken dat de slider onder de knop vandaan komt wanneer er op de knop wordt gedrukt, heb ik de slider onder de knop gezet met translateX (-100%) en als de checkbox valid is de translate op 0 gezet. Ik heb geleerd hoe je de slider moet stylen door [dit artikel](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/).
+
+<img src="images/slider.png">
 <details>
 <summary><h4>slider styling code</h4></summary>
   
@@ -177,7 +180,7 @@ form:nth-of-type(1):has(input[type="checkbox"]:invalid) fieldset:nth-of-type(2) 
 **Draaiknop:**
 Als laatste ben ik ook begonnen met het maken van de draaiknop die ik onder de knop en slider vandaan wil laten komen op basis van de positie van de slider. Ik heb dit gedaan door de width en de height te berekenen met de custom property dat uit de slider komt. Ook hier beweeg ik de knop naar beneden door translateY te gebruiken.
 <details>
-<summary><h4>draaiknop amimatie code</h4></summary>
+<summary><h4>draaiknop animatie code</h4></summary>
   
   ```
     width: calc(var(--standard-width) * (1 + 2 * var(--slider)));
@@ -202,6 +205,8 @@ Deze is mijn doel om een werkende draaiknop te krijgen en meer detail toe te voe
 **Knop:**
 
 Om beter te laten zien dat de knop is ingedrukt heb ik een shadows gamaakt aan de binnenkant van de knop als hij ingedrukt is.
+
+<img src="images/slider.png">
 <details>
 <summary><h4>knop details code</h4></summary>
   
@@ -215,6 +220,7 @@ Om beter te laten zien dat de knop is ingedrukt heb ik een shadows gamaakt aan d
 
 Ik heb bij de slider meer details toegevoegd door tickmarks bij te zetten en door de track te laten lijken op een gleuf waar de thumb doorheen gaat. ik heb dit gedaan met behulp van een codepen van [Ana Tudor](https://codepen.io/wqsuasrc-the-looper/pen/emYELqz?editors=0100). Hier gebruikt zij een backround met een gradient met een repeat zodat er meerder strepen op de achtergrond komen. Ook heb ik hier instpiratie van gehaald door een shadows in de track doen voor een 3d effect.
 
+<img src="images/slider details.png">
 <details>
 <summary><h4>slider details code</h4></summary>
   
@@ -247,6 +253,7 @@ Ik heb bij de slider meer details toegevoegd door tickmarks bij te zetten en doo
 
 Deze week heb ik met behulp van de [sin/cos workshop](https://codepen.io/shooft/pen/OPJxyQW) van Sanne de draaiknop werkend kunnen maken. hierbij heb ik geleerd hoe je een radial gradiant kan positioneren op basis van de waarde van de range input. De details van de draaiknop staan in het label. Doordat de draaiknop onder de andere elementen vandaan komt en dus een negatieve z-indez heeft, kan je er geen interactie mee hebben. Om dit op te lossen heb ik de z-index ook laten aanpassen op basis van de slider zoals de height animatie.
 
+<img src="images/draaiknop.png">
 <details>
 <summary><h4>draaiknop code</h4></summary>
   
@@ -336,6 +343,8 @@ Deze week ga ik het project afmaken. Mijn belangrijkste doel is om het voor elka
 
 **Reset knop:**
 Om een reset knop te implementeren is het nodig om alle interacties in één form te doen. Als de checkbox van de eerste knop actief is moet de checkbox verdwijnen en de reset knop naar voren komen met dezelfde styling.
+
+<img src="images/reset.png">
 <details>
 <summary><h4>html opbouw</h4></summary>
   
@@ -437,6 +446,8 @@ fieldset:nth-of-type(2) input[type="range"]{
 
 **font control:**
 Nadat ik de reset knop werkend kreeg kwam ik er achter dat het niet meer mogelijk is om nog een interactie toe te voegen. Ik had wel iets nodig dat je kan bedienen met de draaiknop. uiteindelijk heb ik ervoor gekozen om een titel te maken waarvan de font-weight aangepast wordt door de draaiknop.
+
+<img src="images/typo1.png"><img src="images/typo2.png">
 <details>
 <summary><h4>font control code</h4></summary>
   
@@ -450,6 +461,8 @@ h1{
 
 **draaiknop container:**
 momenteel kan je de draaiknop nog zien wanneer de fieldset op een hoogte van 0fr zit. Ik heb dit opgelost met een container query. wanneer de container kleiner wordt dan dat de draaiknop hoog is zal hij langzaam verdwijnen door de oppacity te controleren met de waarde van de slider en display op none te setten als de container klein genoeg is.
+
+<img src="images/container.png">
 <details>
 <summary><h4>draaiknop container code</h4></summary>
   
